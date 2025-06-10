@@ -15,9 +15,11 @@ CREATE TABLE productos (
     id INT PRIMARY KEY,
     nombre VARCHAR(100) NOT NULL,
     descripcion VARCHAR(255) NOT NULL,
-    categoria VARCHAR(50) NOT NULL,
+    categoria INT NOT NULL,
     precio DECIMAL(10, 2) NOT NULL,
-    stock INT NOT NULL DEFAULT 0
+    stock INT NOT NULL DEFAULT 0,
+    FOREIGN KEY (categoria) REFERENCES categorias(id)
+
 );
 
 CREATE TABLE ventas (
@@ -35,9 +37,10 @@ CREATE TABLE detalle_ventas (
     venta_id INT NOT NULL,
     producto_id INT NOT NULL,
     cantidad INT NOT NULL,
+    precio_unitario DECIMAL(10, 2) NOT NULL,
     subtotal DECIMAL(10, 2) NOT NULL,
-    FOREIGN KEY (producto_id) REFERENCES productos(id),
-    FOREIGN KEY (venta_id) REFERENCES ventas(id)
+    FOREIGN KEY (venta_id) REFERENCES ventas(id),
+    FOREIGN KEY (producto_id) REFERENCES productos(id)
 );
 
 CREATE TABLE proveedores (
@@ -63,6 +66,7 @@ CREATE TABLE detalle_compras (
     compra_id INT NOT NULL,
     producto_id INT NOT NULL,
     cantidad INT NOT NULL,
+    precio_unitario DECIMAL(10, 2) NOT NULL,
     subtotal DECIMAL(10, 2) NOT NULL,
     FOREIGN KEY (producto_id) REFERENCES productos(id),
     FOREIGN KEY (compra_id) REFERENCES compras(id)
