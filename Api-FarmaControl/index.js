@@ -19,6 +19,7 @@ app.use('/api/productos', require('./routes/productos'));
 app.use('/api/ventas', require('./routes/ventas'));
 app.use('/api/detalleVentas', require('./routes/detalleVentas'));
 app.use('/api/proveedores', require('./routes/proveedores'));
+app.use('/api/auth', require('./routes/auth'));
 
 // Conexión a la base de datos
 db.connect(err => {
