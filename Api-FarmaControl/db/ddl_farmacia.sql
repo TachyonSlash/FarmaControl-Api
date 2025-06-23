@@ -1,6 +1,6 @@
-CREATE DATABASE IF NOT EXISTS farmacia_db;
+CREATE DATABASE IF NOT EXISTS farmacontrol_db;
 
-USE farmacia_db;
+USE farmacontrol_db;
 
 CREATE TABLE usuarios (
     id INT AUTO_INCREMENT PRIMARY KEY,
@@ -15,11 +15,9 @@ CREATE TABLE productos (
     id INT PRIMARY KEY,
     nombre VARCHAR(100) NOT NULL,
     descripcion VARCHAR(255) NOT NULL,
-    categoria INT NOT NULL,
+    categoria VARCHAR(100) NOT NULL,
     precio DECIMAL(10, 2) NOT NULL,
-    stock INT NOT NULL DEFAULT 0,
-    FOREIGN KEY (categoria) REFERENCES categorias(id)
-
+    stock INT NOT NULL DEFAULT 0
 );
 
 CREATE TABLE ventas (
@@ -37,7 +35,6 @@ CREATE TABLE detalle_ventas (
     venta_id INT NOT NULL,
     producto_id INT NOT NULL,
     cantidad INT NOT NULL,
-    precio_unitario DECIMAL(10, 2) NOT NULL,
     subtotal DECIMAL(10, 2) NOT NULL,
     FOREIGN KEY (venta_id) REFERENCES ventas(id),
     FOREIGN KEY (producto_id) REFERENCES productos(id)
@@ -47,7 +44,7 @@ CREATE TABLE proveedores (
     id INT AUTO_INCREMENT PRIMARY KEY,
     nombre_empresa VARCHAR(100) NOT NULL,
     email_contacto VARCHAR(100) NOT NULL,
-    telefono INT NOT NULL,
+    telefono BIGINT NOT NULL,
     direccion VARCHAR(100) NOT NULL UNIQUE
 );
 
@@ -66,7 +63,6 @@ CREATE TABLE detalle_compras (
     compra_id INT NOT NULL,
     producto_id INT NOT NULL,
     cantidad INT NOT NULL,
-    precio_unitario DECIMAL(10, 2) NOT NULL,
     subtotal DECIMAL(10, 2) NOT NULL,
     FOREIGN KEY (producto_id) REFERENCES productos(id),
     FOREIGN KEY (compra_id) REFERENCES compras(id)
