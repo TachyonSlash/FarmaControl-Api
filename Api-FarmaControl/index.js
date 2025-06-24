@@ -3,8 +3,12 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const cors = require('cors');
 const db = require('./config/database');
+const swaggerUi = require('swagger-ui-express');
+const swaggerDocument = require('./swagger.json');
 
 const app = express();
+
+app.use('/api/docs', swaggerUi.serve, swaggerUi.setup(swaggerDocument));
 
 // Middleware
 app.use(cors());
@@ -20,6 +24,7 @@ app.use('/api/ventas', require('./routes/ventas'));
 app.use('/api/detalleVentas', require('./routes/detalleVentas'));
 app.use('/api/proveedores', require('./routes/proveedores'));
 app.use('/api/auth', require('./routes/auth'));
+
 
 // Conexión a la base de datos
 db.connect(err => {

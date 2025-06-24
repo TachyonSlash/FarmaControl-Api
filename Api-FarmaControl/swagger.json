@@ -1,0 +1,378 @@
+{
+  "openapi": "3.0.0",
+  "info": {
+    "title": "FarmaControl API",
+    "version": "1.0.0",
+    "description": "API para la gestión de farmacia: usuarios, productos, ventas, compras, proveedores y detalles."
+  },
+  "servers": [
+    { "url": "http://localhost:3000/api" }
+  ],
+  "tags": [
+    { "name": "Usuarios", "description": "Operaciones sobre usuarios" },
+    { "name": "Productos", "description": "Operaciones sobre productos" },
+    { "name": "Ventas", "description": "Operaciones sobre ventas" },
+    { "name": "DetalleVentas", "description": "Operaciones sobre detalle de ventas" },
+    { "name": "Compras", "description": "Operaciones sobre compras" },
+    { "name": "DetalleCompras", "description": "Operaciones sobre detalle de compras" },
+    { "name": "Proveedores", "description": "Operaciones sobre proveedores" }
+  ],
+  "paths": {
+    "/usuarios": {
+      "get": {
+        "tags": ["Usuarios"],
+        "summary": "Obtener todos los usuarios",
+        "responses": { "200": { "description": "Lista de usuarios" } }
+      },
+      "post": {
+        "tags": ["Usuarios"],
+        "summary": "Crear un usuario",
+        "requestBody": {
+          "required": true,
+          "content": { "application/json": { "schema": { "$ref": "#/components/schemas/Usuario" } } }
+        },
+        "responses": { "201": { "description": "Usuario creado" } }
+      }
+    },
+    "/usuarios/{id}": {
+      "get": {
+        "tags": ["Usuarios"],
+        "summary": "Obtener usuario por ID",
+        "parameters": [{ "name": "id", "in": "path", "required": true, "schema": { "type": "integer" } }],
+        "responses": { "200": { "description": "Usuario encontrado" }, "404": { "description": "Usuario no encontrado" } }
+      },
+      "put": {
+        "tags": ["Usuarios"],
+        "summary": "Actualizar usuario",
+        "parameters": [{ "name": "id", "in": "path", "required": true, "schema": { "type": "integer" } }],
+        "requestBody": {
+          "required": true,
+          "content": { "application/json": { "schema": { "$ref": "#/components/schemas/Usuario" } } }
+        },
+        "responses": { "200": { "description": "Usuario actualizado" } }
+      },
+      "delete": {
+        "tags": ["Usuarios"],
+        "summary": "Eliminar usuario",
+        "parameters": [{ "name": "id", "in": "path", "required": true, "schema": { "type": "integer" } }],
+        "responses": { "200": { "description": "Usuario eliminado" } }
+      }
+    },
+    "/productos": {
+      "get": {
+        "tags": ["Productos"],
+        "summary": "Obtener todos los productos",
+        "responses": { "200": { "description": "Lista de productos" } }
+      },
+      "post": {
+        "tags": ["Productos"],
+        "summary": "Crear producto",
+        "requestBody": {
+          "required": true,
+          "content": { "application/json": { "schema": { "$ref": "#/components/schemas/Producto" } } }
+        },
+        "responses": { "201": { "description": "Producto creado" } }
+      }
+    },
+    "/productos/{id}": {
+      "get": {
+        "tags": ["Productos"],
+        "summary": "Obtener producto por ID",
+        "parameters": [{ "name": "id", "in": "path", "required": true, "schema": { "type": "integer" } }],
+        "responses": { "200": { "description": "Producto encontrado" }, "404": { "description": "Producto no encontrado" } }
+      },
+      "put": {
+        "tags": ["Productos"],
+        "summary": "Actualizar producto",
+        "parameters": [{ "name": "id", "in": "path", "required": true, "schema": { "type": "integer" } }],
+        "requestBody": {
+          "required": true,
+          "content": { "application/json": { "schema": { "$ref": "#/components/schemas/Producto" } } }
+        },
+        "responses": { "200": { "description": "Producto actualizado" } }
+      },
+      "delete": {
+        "tags": ["Productos"],
+        "summary": "Eliminar producto",
+        "parameters": [{ "name": "id", "in": "path", "required": true, "schema": { "type": "integer" } }],
+        "responses": { "200": { "description": "Producto eliminado" } }
+      }
+    },
+    "/ventas": {
+      "get": {
+        "tags": ["Ventas"],
+        "summary": "Obtener todas las ventas",
+        "responses": { "200": { "description": "Lista de ventas" } }
+      },
+      "post": {
+        "tags": ["Ventas"],
+        "summary": "Crear venta",
+        "requestBody": {
+          "required": true,
+          "content": { "application/json": { "schema": { "$ref": "#/components/schemas/Venta" } } }
+        },
+        "responses": { "201": { "description": "Venta creada" } }
+      }
+    },
+    "/ventas/{id}": {
+      "get": {
+        "tags": ["Ventas"],
+        "summary": "Obtener venta por ID",
+        "parameters": [{ "name": "id", "in": "path", "required": true, "schema": { "type": "integer" } }],
+        "responses": { "200": { "description": "Venta encontrada" }, "404": { "description": "Venta no encontrada" } }
+      },
+      "put": {
+        "tags": ["Ventas"],
+        "summary": "Actualizar venta",
+        "parameters": [{ "name": "id", "in": "path", "required": true, "schema": { "type": "integer" } }],
+        "requestBody": {
+          "required": true,
+          "content": { "application/json": { "schema": { "$ref": "#/components/schemas/Venta" } } }
+        },
+        "responses": { "200": { "description": "Venta actualizada" } }
+      },
+      "delete": {
+        "tags": ["Ventas"],
+        "summary": "Eliminar venta",
+        "parameters": [{ "name": "id", "in": "path", "required": true, "schema": { "type": "integer" } }],
+        "responses": { "200": { "description": "Venta eliminada" } }
+      }
+    },
+    "/detalleVentas": {
+      "get": {
+        "tags": ["DetalleVentas"],
+        "summary": "Obtener todos los detalles de ventas",
+        "responses": { "200": { "description": "Lista de detalles de ventas" } }
+      },
+      "post": {
+        "tags": ["DetalleVentas"],
+        "summary": "Crear detalle de venta",
+        "requestBody": {
+          "required": true,
+          "content": { "application/json": { "schema": { "$ref": "#/components/schemas/DetalleVenta" } } }
+        },
+        "responses": { "201": { "description": "Detalle de venta creado" } }
+      }
+    },
+    "/detalleVentas/{id}": {
+      "get": {
+        "tags": ["DetalleVentas"],
+        "summary": "Obtener detalle de venta por ID",
+        "parameters": [{ "name": "id", "in": "path", "required": true, "schema": { "type": "integer" } }],
+        "responses": { "200": { "description": "Detalle de venta encontrado" }, "404": { "description": "Detalle de venta no encontrado" } }
+      },
+      "put": {
+        "tags": ["DetalleVentas"],
+        "summary": "Actualizar detalle de venta",
+        "parameters": [{ "name": "id", "in": "path", "required": true, "schema": { "type": "integer" } }],
+        "requestBody": {
+          "required": true,
+          "content": { "application/json": { "schema": { "$ref": "#/components/schemas/DetalleVenta" } } }
+        },
+        "responses": { "200": { "description": "Detalle de venta actualizado" } }
+      },
+      "delete": {
+        "tags": ["DetalleVentas"],
+        "summary": "Eliminar detalle de venta",
+        "parameters": [{ "name": "id", "in": "path", "required": true, "schema": { "type": "integer" } }],
+        "responses": { "200": { "description": "Detalle de venta eliminado" } }
+      }
+    },
+    "/compras": {
+      "get": {
+        "tags": ["Compras"],
+        "summary": "Obtener todas las compras",
+        "responses": { "200": { "description": "Lista de compras" } }
+      },
+      "post": {
+        "tags": ["Compras"],
+        "summary": "Crear compra",
+        "requestBody": {
+          "required": true,
+          "content": { "application/json": { "schema": { "$ref": "#/components/schemas/Compra" } } }
+        },
+        "responses": { "201": { "description": "Compra creada" } }
+      }
+    },
+    "/compras/{id}": {
+      "get": {
+        "tags": ["Compras"],
+        "summary": "Obtener compra por ID",
+        "parameters": [{ "name": "id", "in": "path", "required": true, "schema": { "type": "integer" } }],
+        "responses": { "200": { "description": "Compra encontrada" }, "404": { "description": "Compra no encontrada" } }
+      },
+      "put": {
+        "tags": ["Compras"],
+        "summary": "Actualizar compra",
+        "parameters": [{ "name": "id", "in": "path", "required": true, "schema": { "type": "integer" } }],
+        "requestBody": {
+          "required": true,
+          "content": { "application/json": { "schema": { "$ref": "#/components/schemas/Compra" } } }
+        },
+        "responses": { "200": { "description": "Compra actualizada" } }
+      },
+      "delete": {
+        "tags": ["Compras"],
+        "summary": "Eliminar compra",
+        "parameters": [{ "name": "id", "in": "path", "required": true, "schema": { "type": "integer" } }],
+        "responses": { "200": { "description": "Compra eliminada" } }
+      }
+    },
+    "/detalleCompras": {
+      "get": {
+        "tags": ["DetalleCompras"],
+        "summary": "Obtener todos los detalles de compras",
+        "responses": { "200": { "description": "Lista de detalles de compras" } }
+      },
+      "post": {
+        "tags": ["DetalleCompras"],
+        "summary": "Crear detalle de compra",
+        "requestBody": {
+          "required": true,
+          "content": { "application/json": { "schema": { "$ref": "#/components/schemas/DetalleCompra" } } }
+        },
+        "responses": { "201": { "description": "Detalle de compra creado" } }
+      }
+    },
+    "/detalleCompras/{id}": {
+      "get": {
+        "tags": ["DetalleCompras"],
+        "summary": "Obtener detalle de compra por ID",
+        "parameters": [{ "name": "id", "in": "path", "required": true, "schema": { "type": "integer" } }],
+        "responses": { "200": { "description": "Detalle de compra encontrado" }, "404": { "description": "Detalle de compra no encontrado" } }
+      },
+      "put": {
+        "tags": ["DetalleCompras"],
+        "summary": "Actualizar detalle de compra",
+        "parameters": [{ "name": "id", "in": "path", "required": true, "schema": { "type": "integer" } }],
+        "requestBody": {
+          "required": true,
+          "content": { "application/json": { "schema": { "$ref": "#/components/schemas/DetalleCompra" } } }
+        },
+        "responses": { "200": { "description": "Detalle de compra actualizado" } }
+      },
+      "delete": {
+        "tags": ["DetalleCompras"],
+        "summary": "Eliminar detalle de compra",
+        "parameters": [{ "name": "id", "in": "path", "required": true, "schema": { "type": "integer" } }],
+        "responses": { "200": { "description": "Detalle de compra eliminado" } }
+      }
+    },
+    "/proveedores": {
+      "get": {
+        "tags": ["Proveedores"],
+        "summary": "Obtener todos los proveedores",
+        "responses": { "200": { "description": "Lista de proveedores" } }
+      },
+      "post": {
+        "tags": ["Proveedores"],
+        "summary": "Crear proveedor",
+        "requestBody": {
+          "required": true,
+          "content": { "application/json": { "schema": { "$ref": "#/components/schemas/Proveedor" } } }
+        },
+        "responses": { "201": { "description": "Proveedor creado" } }
+      }
+    },
+    "/proveedores/{id}": {
+      "get": {
+        "tags": ["Proveedores"],
+        "summary": "Obtener proveedor por ID",
+        "parameters": [{ "name": "id", "in": "path", "required": true, "schema": { "type": "integer" } }],
+        "responses": { "200": { "description": "Proveedor encontrado" }, "404": { "description": "Proveedor no encontrado" } }
+      },
+      "put": {
+        "tags": ["Proveedores"],
+        "summary": "Actualizar proveedor",
+        "parameters": [{ "name": "id", "in": "path", "required": true, "schema": { "type": "integer" } }],
+        "requestBody": {
+          "required": true,
+          "content": { "application/json": { "schema": { "$ref": "#/components/schemas/Proveedor" } } }
+        },
+        "responses": { "200": { "description": "Proveedor actualizado" } }
+      },
+      "delete": {
+        "tags": ["Proveedores"],
+        "summary": "Eliminar proveedor",
+        "parameters": [{ "name": "id", "in": "path", "required": true, "schema": { "type": "integer" } }],
+        "responses": { "200": { "description": "Proveedor eliminado" } }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "Usuario": {
+        "type": "object",
+        "properties": {
+          "id": { "type": "integer" },
+          "usuario": { "type": "string" },
+          "contrasenia": { "type": "string" },
+          "nombre_completo": { "type": "string" },
+          "email": { "type": "string" },
+          "rol": { "type": "string" }
+        }
+      },
+      "Producto": {
+        "type": "object",
+        "properties": {
+          "id": { "type": "integer" },
+          "nombre": { "type": "string" },
+          "descripcion": { "type": "string" },
+          "categoria": { "type": "string" },
+          "precio": { "type": "number", "format": "float" },
+          "stock": { "type": "integer" }
+        }
+      },
+      "Venta": {
+        "type": "object",
+        "properties": {
+          "id": { "type": "integer" },
+          "cliente_id": { "type": "integer" },
+          "usuario_id": { "type": "integer" },
+          "fecha_venta": { "type": "string", "format": "date-time" },
+          "total": { "type": "number", "format": "float" }
+        }
+      },
+      "DetalleVenta": {
+        "type": "object",
+        "properties": {
+          "id": { "type": "integer" },
+          "venta_id": { "type": "integer" },
+          "producto_id": { "type": "integer" },
+          "cantidad": { "type": "integer" },
+          "subtotal": { "type": "number", "format": "float" }
+        }
+      },
+      "Compra": {
+        "type": "object",
+        "properties": {
+          "id": { "type": "integer" },
+          "proveedor_id": { "type": "integer" },
+          "usuario_id": { "type": "integer" },
+          "fecha_compra": { "type": "string", "format": "date-time" },
+          "total": { "type": "number", "format": "float" }
+        }
+      },
+      "DetalleCompra": {
+        "type": "object",
+        "properties": {
+          "id": { "type": "integer" },
+          "compra_id": { "type": "integer" },
+          "producto_id": { "type": "integer" },
+          "cantidad": { "type": "integer" },
+          "subtotal": { "type": "number", "format": "float" }
+        }
+      },
+      "Proveedor": {
+        "type": "object",
+        "properties": {
+          "id": { "type": "integer" },
+          "nombre_empresa": { "type": "string" },
+          "email_contacto": { "type": "string" },
+          "telefono": { "type": "string" },
+          "direccion": { "type": "string" }
+        }
+      }
+    }
+  }
+}
