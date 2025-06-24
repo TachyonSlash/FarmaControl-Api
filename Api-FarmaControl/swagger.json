@@ -304,7 +304,6 @@
       "Usuario": {
         "type": "object",
         "properties": {
-          "id": { "type": "integer" },
           "usuario": { "type": "string" },
           "contrasenia": { "type": "string" },
           "nombre_completo": { "type": "string" },
@@ -315,7 +314,6 @@
       "Producto": {
         "type": "object",
         "properties": {
-          "id": { "type": "integer" },
           "nombre": { "type": "string" },
           "descripcion": { "type": "string" },
           "categoria": { "type": "string" },
@@ -326,17 +324,14 @@
       "Venta": {
         "type": "object",
         "properties": {
-          "id": { "type": "integer" },
           "cliente_id": { "type": "integer" },
           "usuario_id": { "type": "integer" },
-          "fecha_venta": { "type": "string", "format": "date-time" },
           "total": { "type": "number", "format": "float" }
         }
       },
       "DetalleVenta": {
         "type": "object",
         "properties": {
-          "id": { "type": "integer" },
           "venta_id": { "type": "integer" },
           "producto_id": { "type": "integer" },
           "cantidad": { "type": "integer" },
@@ -346,17 +341,14 @@
       "Compra": {
         "type": "object",
         "properties": {
-          "id": { "type": "integer" },
           "proveedor_id": { "type": "integer" },
           "usuario_id": { "type": "integer" },
-          "fecha_compra": { "type": "string", "format": "date-time" },
           "total": { "type": "number", "format": "float" }
         }
       },
       "DetalleCompra": {
         "type": "object",
         "properties": {
-          "id": { "type": "integer" },
           "compra_id": { "type": "integer" },
           "producto_id": { "type": "integer" },
           "cantidad": { "type": "integer" },
@@ -366,7 +358,6 @@
       "Proveedor": {
         "type": "object",
         "properties": {
-          "id": { "type": "integer" },
           "nombre_empresa": { "type": "string" },
           "email_contacto": { "type": "string" },
           "telefono": { "type": "string" },

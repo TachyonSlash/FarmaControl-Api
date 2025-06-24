@@ -12,7 +12,7 @@ CREATE TABLE usuarios (
 );
 
 CREATE TABLE productos (
-    id INT PRIMARY KEY,
+    id INT AUTO_INCREMENT PRIMARY KEY,
     nombre VARCHAR(100) NOT NULL,
     descripcion VARCHAR(255) NOT NULL,
     categoria VARCHAR(100) NOT NULL,

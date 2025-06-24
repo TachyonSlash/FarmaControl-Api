@@ -26,7 +26,7 @@ router.post('/', (req, res) => {
   // Verificar si el email ya existe
   Usuario.findByEmail(email, (err, result) => {
     if (err) return res.status(500).json({ error: err.message });
-    if (result) return res.status(400).json({ message: 'El email ya está registrado' });
+    if (result && result.length > 0) return res.status(400).json({ message: 'El email ya está registrado' });
     
     // Crear el usuario
     Usuario.create(req.body, (err, result) => {
